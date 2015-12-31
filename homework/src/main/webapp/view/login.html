@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+	<div class="panel-heading">ログイン</div>
+	<div class="panel-body">
+		<form name="loginForm" ng-submit="login()" novalidate>
+			<div class="form-group" ng-class="{'has-error': loginForm.userId.$invalid}">
+				<input type="text" name="userId" class="form-control" placeholder="ユーザＩＤ　※必須" autocomplete="off"
+					ng-model="userId" ng-minlength="4" ng-maxlength="32" required />
+				<span class="text-danger" ng-show="loginForm.userId.$error.minlength" ng-if="loginForm.userId.$invalid">ユーザーIDは4文字以上で入力してください。</span>
+				<span class="text-danger" ng-show="loginForm.userId.$error.maxlength" ng-if="loginForm.userId.$invalid">ユーザーIDは32文字以内で入力してください。</span>
+			</div>
+			<br />
+			<div class="form-group" ng-class="{'has-error': loginForm.passWd.$invalid}">
+				<input type="password" name="passWd" class="form-control" placeholder="パスワード　※必須"
+					ng-model="passWd" ng-minlength="4" ng-maxlength="16" required />
+				<span class="text-danger" ng-show="loginForm.passWd.$error.minlength" ng-if="loginForm.passWd.$invalid">パスワードは4文字以上で入力してください。</span>
+				<span class="text-danger" ng-show="loginForm.passWd.$error.maxlength" ng-if="loginForm.passWd.$invalid">パスワードは16文字以内で入力してください。</span>
+			</div>
+			<br />
+			<input type="submit" value="ログイン" class="btn btn-primary btn-block" ng-disabled="loginForm.$invalid" />
+		</form>
+	</div>
+</div>

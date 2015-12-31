@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+	<div class="panel-heading">結果</div>
+	<div class="panel-body">
+		<p>
+			回答に約{{history.elapsed}}かかりました。<br />
+			正答率は{{history.correctPercent}}%でした。
+		</p>
+		<table>
+			<tr ng-repeat="answer in answers">
+				<td>
+					<table class="table table-bordered table-responsive">
+						<tr>
+							<td width="10%" rowspan="4"  ng-class="{'bg-danger': answer.correctWrong == '0', 'bg-success': answer.correctWrong == '1'}">
+								<span>
+									問{{$index + 1}}
+									<span ng-show="answer.correctWrong == 1">◎</span>
+									<span ng-show="answer.correctWrong == 0">×</span>
+								</span>
+							</td>
+						</tr>
+						<tr><td colspan="4">{{answer.question.question}}</td></tr>
+						<tr>
+							<th width="10%">回答</th><td width="35%">{{answer.answer}}</td>
+							<th width="10%">正解</th><td width="35%">{{answer.question.correct}}</td>
+						</tr>
+						<tr><td colspan="4">{{answer.question.remark}}&nbsp;</td></tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<button type="button" ng-click="next()" class="btn btn-default btn-block">もう一回</button>
+		<button type="button" ng-click="finish()" class="btn btn-primary btn-block">終了</button>
+	</div>
+</div>
+

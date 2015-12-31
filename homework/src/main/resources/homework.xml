@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1"
+		xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+
+	<!-- アカウントIDとパスワードでユーザ情報を取得する -->
+	<named-query name="User.findByAccountPasswd">
+		<query><![CDATA[
+		SELECT
+			u
+		FROM
+			User u
+		WHERE
+			u.accountId = :accountId
+		AND
+			u.password = :password
+		]]></query>
+	</named-query>
+
+	<!-- 直近の回答履歴情報を取得する -->
+	<named-query name="Answer.findLatestHistory">
+		<query><![CDATA[
+		SELECT
+			a
+		FROM
+			Answer a
+		WHERE
+			a.history.historyId =
+			(
+				SELECT
+					max(h.historyId)
+				FROM
+					History h
+				WHERE
+					h.user.userId = :userId
+			)
+		ORDER BY
+			a.answerId
+		]]></query>
+	</named-query>
+
+	<!-- 問題IDを取得する -->
+	<named-query name="Question.selectQuestionId">
+		<query><![CDATA[
+		SELECT
+			q.questionId
+		FROM
+			Question q
+		WHERE
+			q.subject.targetAge BETWEEN :schoolAgeFrom AND :schoolAgeTo
+		AND
+			q.questionId NOT IN :latestQuestions
+		]]></query>
+	</named-query>
+
+	<!-- 問題を取得する -->
+	<named-query name="Question.selectQuestions">
+		<query><![CDATA[
+		SELECT
+			q
+		FROM
+			Question q
+		WHERE
+			q.questionId IN :questionId
+		]]></query>
+	</named-query>
+</entity-mappings>

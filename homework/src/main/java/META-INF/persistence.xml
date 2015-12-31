@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="homework" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/datasources/HomeworkDS</jta-data-source>
+		<mapping-file>homework.xml</mapping-file>
+		<class>homework.entity.Answer</class>
+		<class>homework.entity.History</class>
+		<class>homework.entity.Question</class>
+		<class>homework.entity.Subject</class>
+		<class>homework.entity.User</class>
+		<properties>
+			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="homework_ut" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<mapping-file>homework.xml</mapping-file>
+		<class>homework.entity.Answer</class>
+		<class>homework.entity.History</class>
+		<class>homework.entity.Question</class>
+		<class>homework.entity.Subject</class>
+		<class>homework.entity.User</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:log4jdbc:mysql://localhost:3306/homework_ut"/>
+			<property name="javax.persistence.jdbc.user" value="db_user"/>
+			<property name="javax.persistence.jdbc.password" value="db_pass"/>
+			<property name="javax.persistence.jdbc.driver" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+	<div class="panel-heading">{{user.lastName}}{{user.firstName}} さん、こんにちは</div>
+	<div class="panel-body">
+		<p ng-if="wrongAnswers.length > 0">
+		前回間違えた問題の解答は覚えましたか？
+		</p>
+		<table class="table table-responsive">
+			<tr ng-repeat="answer in wrongAnswers">
+				<td>
+					<table class="table table-responsive">
+						<tr><th width="10%">問題</th><td colspan="3">{{answer.question.question}}</td></tr>
+						<tr>
+							<th width="10%">回答</th><td width="40%">{{answer.answer}}</td>
+							<th width="10%">正解</th><td width="40%">{{answer.question.correct}}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<hr />
+		<h3>問題数を選択して「開始」ボタンを押してください。</h3>
+		<div class="radio-inline">
+			<label class="h3"><input type="radio" name="volume" ng-model="volume" value="10" />10問</label>
+		</div>
+		<div class="radio-inline">
+			<label class="h3"><input type="radio" name="volume" ng-model="volume" value="30" />30問</label>
+		</div>
+		<button ng-click="start()" type="button" class="btn btn-primary btn-block">開始</button>
+	</div>
+</div>

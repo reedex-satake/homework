@@ -1,0 +1,10 @@
+<div class="modal-header">
+	<img ng-src="{{dialogInfo.icon}}" />{{dialogInfo.title}}
+	<button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">×</button>
+</div>
+<div class="modal-body">
+	<div style="white-space: pre-line">{{dialogInfo.message}}</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="$close()">閉じる</button>
+</div>

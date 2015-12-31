@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+	<div class="panel-heading">問題</div>
+	<div class="panel-body">
+		<table class="table table-responsive">
+			<tr ng-repeat="question in questions">
+				<td width="10%">問{{$index + 1}}</td>
+				<td>
+					{{question.question}}
+					<br />
+					<input type="text" ng-model="question.answer" class="form-control" placeholder="答え" autocomplete="off" />
+				</td>
+			</tr>
+		</table>
+		<button type="button" ng-click="answer()" class="btn btn-primary btn-block">採点</button>
+	</div>
+</div>
+
