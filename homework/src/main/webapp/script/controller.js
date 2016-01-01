@@ -27,11 +27,6 @@ app.controller('AnswerController', function($scope, $location, $http, AppData, M
 app.controller('EndController', function($scope, $location, $http, AppData, MessageBox) {
 	$scope.history = AppData.values.history;
 	$scope.answers = AppData.values.answers;
-	$scope.next = function()
-	{
-		AppData.values = {};
-		$location.path('/top');
-	}
 	$scope.finish = function()
 	{
 		AppData.user = null;
